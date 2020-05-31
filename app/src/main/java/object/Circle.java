@@ -1,10 +1,9 @@
-package com.example.firstgame;
+package object;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import androidx.core.content.ContextCompat;
 /*
 circle is an abstract class which implements a draw method from GameObject for drawing the object as a circle
  */

@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="magenta">#FF09FF</color>
-    <color name="player">#FF0000</color>
+    <color name="player">#D3D3D3</color>
+    <color name="enemy">#0000FF</color>
 </resources>

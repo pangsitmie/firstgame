@@ -6,9 +6,11 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 
 import androidx.core.content.ContextCompat;
+
+import object.Enemy;
+import object.Player;
 
 /*
 *game manager all object in the game and is responsible for updating all states and render all
@@ -31,8 +33,8 @@ class Game extends SurfaceView implements SurfaceHolder.Callback {
         gameLoop  = new GameLoop(this,surfaceHolder);
         //initialize player
         joystick = new Joystick(275,700, 70,40);
-        player = new Player(getContext(), joystick , 2*500,30, 40);
-        enemy = new Enemy();
+        player = new Player(getContext(), joystick , 2*500,500, 40);
+        enemy = new Enemy(getContext(), player , 500,400, 40);
         
         setFocusable(true);
 
@@ -76,15 +78,6 @@ class Game extends SurfaceView implements SurfaceHolder.Callback {
 
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        super.draw(canvas);
-        drawUPS(canvas);
-        drawFPS(canvas);
-        player.draw(canvas);
-        joystick.draw(canvas);
-    }
-
     public void drawUPS(Canvas canvas)
     {
         String averageUPS = Double.toString(gameLoop.getAverageUPS());
@@ -94,6 +87,7 @@ class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(50);
         canvas.drawText("UPS: " + averageUPS, 100,100,paint);
     }
+
     public void drawFPS(Canvas canvas)
     {
         String averageFPS = Double.toString(gameLoop.getAverageFPS());
@@ -103,11 +97,22 @@ class Game extends SurfaceView implements SurfaceHolder.Callback {
         paint.setTextSize(50);
         canvas.drawText("FPS: " + averageFPS, 100,200,paint);
     }
+    @Override
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        drawUPS(canvas);
+        drawFPS(canvas);
+
+        player.draw(canvas);
+        joystick.draw(canvas);
+        enemy.draw(canvas);
+    }
 
     public void update() {
         //update game state
         joystick.update();
         player.update();
+        enemy.update();
 
     }
 }
