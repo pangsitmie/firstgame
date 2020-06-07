@@ -8,8 +8,10 @@ public abstract class GameObject {
     protected double positionX;
     protected double positionY;
 
-    protected double velocityX;
-    protected double velocityY;
+    protected double velocityX=0;
+    protected double velocityY=0;
+    protected double directionX=1;
+    protected double directionY=0;
 
     public GameObject(double positionX, double positionY){
         this.positionX = positionX;
@@ -28,5 +30,14 @@ public abstract class GameObject {
                 Math.pow(obj2.getPositionX()-obj1.getPositionX(),2)+
                 Math.pow(obj2.getPositionY()-obj1.getPositionY(),2)
         );
+    }
+
+    protected double getDirectionX() {
+        return directionX;
+        
+    }
+
+    protected double getDirectionY() {
+        return directionY;
     }
 }
